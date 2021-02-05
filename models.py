@@ -1,6 +1,32 @@
 import uuid
 
 
+def valid_email(email):
+    if '@' in email:
+        return True
+    return False
+
+
+def valid_password(password):
+    length = False
+    uppercase = False
+    lowercase = False
+    number = False
+    special_char = False
+    if len(password) >= 8:
+        length = True
+    for character in password:
+        if character.isupper():
+            uppercase = True
+        elif character.islower():
+            lowercase = True
+        elif not character.isalnum():
+            special_char = True
+        elif character.isnumeric():
+            number = True
+    return length and uppercase and lowercase and special_char and number
+
+
 class User:
 
     def __init__(self, first_name, last_name, email, password, profile_picture=None, birth_date=None, level=0):
@@ -11,10 +37,16 @@ class User:
         self.profile_picture = profile_picture
         self.birth_date = birth_date
         self.level = level
-        self.id = uuid.uuid3()  # search what i need give to that function as parameter
+        self.id = uuid.uuid3(uuid.NAMESPACE_DNS, str(self.last_name))
 
     def validate_user(self):
-        pass
+        if self.first_name is None or self.last_name is None:
+            return False
+        elif not valid_email(self.email):
+            return False
+        elif not valid_password(self.password):
+            return False
+        return True
 
     def create_playlist(self, name):
         pass
@@ -92,7 +124,7 @@ class Album(Playlist):
         pass
 
 
-class SongPlayes:
+class SongPlays:
     def __init__(self, user, song, start_timestamp):
         self.user = user
         self.song = song
@@ -104,3 +136,5 @@ class PlaylistSong:
         self.playlist = playlist
         self.song = song
         self.date_added = date_added
+
+
