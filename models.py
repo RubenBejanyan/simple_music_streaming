@@ -1,4 +1,5 @@
 import uuid
+import datetime
 
 
 def valid_email(email):
@@ -27,46 +28,28 @@ def valid_password(password):
     return length and uppercase and lowercase and special_char and number
 
 
-class User:
+class Playlist:
+    def __init__(self, name, date_added, created_by, picture_url=None):
+        self.name = name
+        self.date_added = date_added  # may be need to add date automatically
+        self.created_by = created_by
+        self.picture_url = picture_url
+        self.song_list = []
 
-    def __init__(self, first_name, last_name, email, password, profile_picture=None, birth_date=None, level=0):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email
-        self.password = password
-        self.profile_picture = profile_picture
-        self.birth_date = birth_date
-        self.level = level
-        self.id = uuid.uuid3(uuid.NAMESPACE_DNS, str(self.last_name))
-
-    def validate_user(self):
-        if self.first_name is None or self.last_name is None:
-            return False
-        elif not valid_email(self.email):
-            return False
-        elif not valid_password(self.password):
-            return False
-        return True
-
-    def create_playlist(self, name):
+    def play(self):
         pass
 
-    def delete_playlist(self, name):
+    def stop(self):
         pass
 
 
-class Artist(User):
-    def __init__(self, about=None, listeners_count=0):
-        self.about = about
-        self.listeners_count = listeners_count
+class Album(Playlist):
+    def __init__(self, label, year, name, date_added, created_by, picture_url):
+        super(Album, self).__init__(name=name, date_added=date_added, created_by=created_by, picture_url=picture_url)
+        self.label = label
+        self.year = year
 
-    def add_song(self, title: str, artist_name: str, file: str):
-        pass
-
-    def delete_song(self, song_id):
-        pass
-
-    def create_album(self, title, label, year, list_of_song_url=[]):
+    def validate(self):
         pass
 
 
@@ -101,26 +84,51 @@ class Song:
         pass
 
 
-class Playlist:
-    def __init__(self, name, date_added, created_by, picture_url):
-        self.name = name
-        self.date_added = date_added  # may be need to add date automatically
-        self.created_by = created_by
-        self.picture_url = picture_url
+class User:
 
-    def play(self):
+    def __init__(self, first_name, last_name, email, password, profile_picture=None, birth_date=None, level=0):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.email = email
+        self.password = password
+        self.profile_picture = profile_picture
+        self.birth_date = birth_date
+        self.level = level
+        self.id = uuid.uuid3(uuid.NAMESPACE_DNS, str(self.last_name))
+
+    def validate_user(self):
+        if self.first_name is None or self.last_name is None:
+            return False
+        elif not valid_email(self.email):
+            return False
+        elif not valid_password(self.password):
+            return False
+        return True
+
+    def create_playlist(self, name):
+        new_playlist = Playlist(name=name, date_added=datetime.datetime.now(),
+                                created_by='_'.join((self.first_name, self.last_name)))
+        return new_playlist
+
+    def delete_playlist(self, name):
         pass
 
-    def stop(self):
+
+class Artist(User):
+    def __init__(self, first_name, last_name, email, password,
+                 profile_picture=None, birth_date=None, level=0, about=None, listeners_count=0):
+        super(Artist, self).__init__(first_name=first_name, last_name=last_name, email=email, password=password,
+                                     profile_picture=profile_picture, birth_date=birth_date, level=level)
+        self.about = about
+        self.listeners_count = listeners_count
+
+    def add_song(self, title: str, artist_name: str, file: str):
         pass
 
+    def delete_song(self, song_id):
+        pass
 
-class Album(Playlist):
-    def __init__(self, label, year):
-        self.label = label
-        self.year = year
-
-    def validate(self):
+    def create_album(self, title, label, year, list_of_song_url=[]):
         pass
 
 
@@ -138,3 +146,5 @@ class PlaylistSong:
         self.date_added = date_added
 
 
+a = Artist('ruben', 'bejanyan', 'bej@gmail.com', '123Asd@@')
+print(a.id, a.validate_user())
