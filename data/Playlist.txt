@@ -1,0 +1,5 @@
+{"name": "other5", "date_added": "2021-02-19", "created_by": "f4fe0a4f7d7432ef83f6d29c7090e3ca", "picture_url": null, "song_list": ["447018c53437372bbafbc577554e6e58"], "id": "cfe9543fd6f337b18a56256ff6964863"}
+{"name": "other5", "date_added": "2021-02-19", "created_by": "f4fe0a4f7d7432ef83f6d29c7090e3ca", "picture_url": null, "song_list": [], "id": "cfe9543fd6f337b18a56256ff6964863"}
+{"name": "other6", "date_added": "2021-02-20", "created_by": "f4fe0a4f7d7432ef83f6d29c7090e3ca", "picture_url": null, "song_list": null, "id": "8f9ea0b7586d3fe297f31e2345acd101"}
+{"name": "other6", "date_added": "2021-02-20", "created_by": "f4fe0a4f7d7432ef83f6d29c7090e3ca", "picture_url": null, "song_list": "447018c53437372bbafbc577554e6e58", "id": "8f9ea0b7586d3fe297f31e2345acd101"}
+{"name": "other6", "date_added": "2021-02-20", "created_by": "f4fe0a4f7d7432ef83f6d29c7090e3ca", "picture_url": null, "song_list": [], "id": "8f9ea0b7586d3fe297f31e2345acd101"}

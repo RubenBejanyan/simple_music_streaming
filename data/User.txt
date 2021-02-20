@@ -1,0 +1,1 @@
+{"first_name": "jan", "last_name": "Marley", "email": "bob@com", "password": "7414tUn&", "profile_picture": null, "birth_date": null, "level": 0, "id": "f4fe0a4f7d7432ef83f6d29c7090e3ca", "song_playing": null}
